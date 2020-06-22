@@ -5,6 +5,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
@@ -39,7 +40,7 @@ public class UserController {
     } 
 
     @PostMapping("/update/{id}")
-    public String updateUser(@PathVariable("id") long id, @Valid User user, 
+    public String updateUser(@PathVariable("id") long id, @Validated User user, 
       BindingResult result, Model model) {
         if (result.hasErrors()) {
            user.setId(id);
