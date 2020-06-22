@@ -11,13 +11,19 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class UserController {
 
+    private UserRepository userRepository;
+
+    @Autowired
+    public UserController(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+    
     @GetMapping("/signup")
     public String showSignUpForm(User user) {
         return "add-user";
     }
 
-    private UserRepository userRepository;
-
+    
     @PostMapping("/adduser")
     public String addUser(@Validated User user, BindingResult result, Model model) {
         if (result.hasErrors()) {
@@ -35,8 +41,8 @@ public class UserController {
         User user = userRepository.findById(id)
           .orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
      
-    model.addAttribute("user", user);
-    return "update-user";
+        model.addAttribute("user", user);
+        return "update-user";
     } 
 
     @PostMapping("/update/{id}")

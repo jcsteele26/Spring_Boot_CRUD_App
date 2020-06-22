@@ -40,13 +40,17 @@ public class User {
         this.email = email;
     }
 
-    public void setId(long id2) {
-        this.id = id2;
+    public long getId(){
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
 	}
 
     @Override
     public String toString() {
-        return "User [ name= " + name + ", email= " + email + "]";
+        return "User [ " + "id= " + id + ", name= " + name + ", email= " + email + "]";
     }
 
 	    
